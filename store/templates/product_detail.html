@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+</head>
+<body>
+
+<h1>{{ product.name }}</h1>
+
+<p>{{ product.description }}</p>
+
+<h3>Price: ₹{{ product.price }}</h3>
+
+<p>Stock: {{ product.stock }}</p>
+<a href="/add-to-cart/{{ product.id }}/">
+    Add To Cart
+</a>
+<br><br>
+
+<a href="/">Back to Products</a>
+
+</body>
+</html>

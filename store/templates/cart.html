@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="/">MyStore</a>
+</nav>
+
+<div class="container mt-4">
+
+    <h2>Your Cart</h2>
+
+    {% for item in items %}
+        <div class="card mb-2 p-3">
+
+            <h5>{{ item.product.name }}</h5>
+            <p>Price: ₹{{ item.product.price }}</p>
+
+            <p>Quantity: {{ item.quantity }}</p>
+
+            <div>
+                <a href="/cart/decrease/{{ item.id }}/" class="btn btn-warning btn-sm">-</a>
+                <a href="/cart/increase/{{ item.id }}/" class="btn btn-success btn-sm">+</a>
+                <a href="/cart/remove/{{ item.id }}/" class="btn btn-danger btn-sm">Remove</a>
+            </div>
+
+        </div>
+    {% empty %}
+        <p>Your cart is empty</p>
+    {% endfor %}
+
+    <hr>
+
+    <h4>Total: ₹{{ total }}</h4>
+
+    <!-- Checkout Button (correct place) -->
+    {% if items %}
+        <a href="/checkout/" class="btn btn-primary mt-3">
+            Proceed to Checkout
+        </a>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

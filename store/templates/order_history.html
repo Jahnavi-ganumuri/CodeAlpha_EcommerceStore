@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="/">MyStore</a>
+</nav>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">My Orders</h2>
+
+    {% for order in orders %}
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+
+            <strong>Order #{{ order.id }}</strong>
+
+            <span class="float-end">
+                {{ order.created_at }}
+            </span>
+
+        </div>
+
+        <div class="card-body">
+
+            {% for item in order.orderitem_set.all %}
+
+            <div class="border-bottom mb-2 pb-2">
+
+                <h5>{{ item.product.name }}</h5>
+
+                <p>
+                    Quantity: {{ item.quantity }}
+                </p>
+
+                <p>
+                    Price: ₹{{ item.price }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+            <h5 class="mt-3">
+                Total: ₹{{ order.total_price }}
+            </h5>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+        No orders found.
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
